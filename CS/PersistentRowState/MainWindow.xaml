@@ -1,0 +1,39 @@
+﻿<Window xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+        x:Class="PersistentRowState.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:local="clr-namespace:PersistentRowState"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+            <DataTemplate x:Key="PersistentRowStateDataRowTemplate">
+                <StackPanel Orientation="Vertical">
+                    <dx:MeasurePixelSnapper>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <ContentControl Content="{Binding}" ContentTemplate="{Binding Path=View.DefaultDataRowTemplate }" 
+                                Height="{Binding Path=RowState.(local:ResizableDataRow.RowHeight)}"/>
+                        </Grid>
+                    </dx:MeasurePixelSnapper>
+                    <local:ResizableDataRow>
+                        <local:ResizableDataRow.Template>
+                            <ControlTemplate>
+                                <dxg:RowSplitter Name="PART_Resizer" Grid.Row="1" Cursor="SizeNS" Height="1" />
+                            </ControlTemplate>
+                        </local:ResizableDataRow.Template>
+                    </local:ResizableDataRow>
+                </StackPanel>
+            </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <dxg:GridControl AutoGenerateColumns="AddNew" Name="grid"  Loaded="grid_Loaded">
+            <dxg:GridControl.View>
+                <dxg:TableView AutoWidth="True"
+                   DataRowTemplate="{DynamicResource PersistentRowStateDataRowTemplate}" UseLightweightTemplates="None"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</Window>
