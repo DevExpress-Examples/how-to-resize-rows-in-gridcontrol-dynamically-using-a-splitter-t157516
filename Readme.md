@@ -1,3 +1,11 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [Classes.cs](./CS/PersistentRowState/Classes.cs) (VB: [Classes.vb](./VB/PersistentRowState/Classes.vb))
+* [Data.cs](./CS/PersistentRowState/Data.cs) (VB: [Data.vb](./VB/PersistentRowState/Data.vb))
+* **[MainWindow.xaml](./CS/PersistentRowState/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/PersistentRowState/MainWindow.xaml))**
+* [MainWindow.xaml.cs](./CS/PersistentRowState/MainWindow.xaml.cs) (VB: [MainWindow.xaml](./VB/PersistentRowState/MainWindow.xaml))
+<!-- default file list end -->
 # How to resize rows in GridControl dynamically using a splitter
 
 
