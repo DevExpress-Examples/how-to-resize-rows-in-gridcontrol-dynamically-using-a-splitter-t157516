@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistentRowState", "PersistentRowState\PersistentRowState.csproj", "{288B2E46-31F7-409E-8796-754EAB73DF5D}"
+# Visual Studio 16
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistentRowState", "PersistentRowState\PersistentRowState.Net5.csproj", "{288B2E46-31F7-409E-8796-754EAB73DF5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
