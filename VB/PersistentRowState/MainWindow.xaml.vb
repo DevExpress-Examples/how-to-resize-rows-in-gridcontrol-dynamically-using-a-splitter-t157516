@@ -14,18 +14,18 @@ Imports System.Windows.Navigation
 Imports System.Windows.Shapes
 
 Namespace PersistentRowState
-    ''' <summary>
-    ''' Interaction logic for MainWindow.xaml
-    ''' </summary>
-    Partial Public Class MainWindow
-        Inherits Window
+	''' <summary>
+	''' Interaction logic for MainWindow.xaml
+	''' </summary>
+	Partial Public Class MainWindow
+		Inherits Window
 
-        Public Sub New()
-            InitializeComponent()
-        End Sub
+		Public Sub New()
+			InitializeComponent()
+		End Sub
 
-        Private Sub grid_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
-            grid.ItemsSource = Data.GetDataList(100)
-        End Sub
-    End Class
+		Private Sub grid_Loaded(ByVal sender As Object, ByVal e As RoutedEventArgs)
+			grid.ItemsSource = Data.GetDataList(100)
+		End Sub
+	End Class
 End Namespace
