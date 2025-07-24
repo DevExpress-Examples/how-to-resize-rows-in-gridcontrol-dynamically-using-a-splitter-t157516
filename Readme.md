@@ -12,7 +12,7 @@
 * **[MainWindow.xaml](./CS/PersistentRowState/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/PersistentRowState/MainWindow.xaml))**
 * [MainWindow.xaml.cs](./CS/PersistentRowState/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](./VB/PersistentRowState/MainWindow.xaml.vb))
 <!-- default file list end -->
-# How to resize rows in GridControl dynamically using a splitter
+# WPF Grid - Resize rows using a splitter
 
 
 <p>To make the row height resizable, perform these steps:</p>
