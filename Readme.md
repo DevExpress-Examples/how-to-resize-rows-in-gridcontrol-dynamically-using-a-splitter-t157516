@@ -5,58 +5,15 @@
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
 
-# WPF Data Grid – Resize Row Height with a Splitter
+# WPF Data Grid – Resize Row Height
 
-This example configures the [`GridControl`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl) to resize row height with a splitter. The grid uses a custom control that stores row height in the [`RowData.RowState`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.RowData.RowState) property, so the height persists after refresh.
+This example implements resizable rows in a DevExpress WPF [Grid](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl). Users can interactively change the height of individual grid rows (similar to resizing columns) and retain these changes for a consistent user experience.
 
 ![Resize Row Height with a Splitter](./Images/resize-row-height.jpg)
 
-Use this technique when you need to:
-
-* Allow users to resize rows manually.
-* Persist row height after a user updates data or scrolls a view.
-* Integrate a splitter into the row template.
-
 ## Implementation Details
 
-1. Create a custom control that implements the `IResizeHelperOwner` interface.  
-2. Add an attached `RowHeight` property to store the current height in the `RowState`.  
-3. Define a `DataRowTemplate` for the view that includes the following:
-   - A `ContentControl` bound to the [`DefaultDataRowTemplate`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TableView.DefaultDataRowTemplate) to display the row content.
-   - A custom `ResizableDataRow` control with a `RowSplitter` in its template.
-4. Bind the `ContentControl.Height` property to the `RowHeight` property to apply size changes.
-
-### Row Template
-
-```xaml
-<DataTemplate x:Key="PersistentRowStateDataRowTemplate">
-    <StackPanel Orientation="Vertical">
-        <dx:MeasurePixelSnapper>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <ContentControl Content="{Binding}"
-                                ContentTemplate="{Binding Path=View.DefaultDataRowTemplate}"
-                                Height="{Binding Path=RowState.(local:ResizableDataRow.RowHeight)}"/>
-            </Grid>
-        </dx:MeasurePixelSnapper>
-        <local:ResizableDataRow>
-            <local:ResizableDataRow.Template>
-                <ControlTemplate>
-                    <dxg:RowSplitter Name="PART_Resizer"
-                                     Grid.Row="1"
-                                     Cursor="SizeNS"
-                                     Height="1" />
-                </ControlTemplate>
-            </local:ResizableDataRow.Template>
-        </local:ResizableDataRow>
-    </StackPanel>
-</DataTemplate>
-```
-
-### Custom Control
+### Create a Resizable Control
 
 The `ResizableDataRow` control implements the `IResizeHelperOwner` interface to work with `ResizeHelper`. The control stores the current row height in the `RowHeight` property and updates this value when the splitter moves.
 
@@ -71,6 +28,52 @@ public class ResizableDataRow : Control, IResizeHelperOwner {
     }
     // ...
 }
+```
+
+### Persist Row Height with an Attached Property
+
+The `RowHeight` attached property stores the height value in the `RowState` object. The grid uses this value to restore the row height after scrolling or refreshing. The `ResizableDataRow` control gets and sets the row height through the `RowState`:
+
+```csharp
+public static void SetRowHeight(DependencyObject element, double value) {
+    element.SetValue(RowHeightProperty, value);
+}
+
+public static double GetRowHeight(DependencyObject element) {
+    return (double)element.GetValue(RowHeightProperty);
+}
+```
+
+### Define a Row Template
+
+The [`DataRowTemplate`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TableView.DataRowTemplate) contains a `ContentControl` that displays the default row content and a `ResizableDataRow` control with a `RowSplitter` to change the row height:
+
+```xaml
+<DataTemplate x:Key="PersistentRowStateDataRowTemplate">
+    <StackPanel Orientation="Vertical">
+        <dx:MeasurePixelSnapper>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ContentControl Content="{Binding}"
+                                ContentTemplate="{Binding Path=View.DefaultDataRowTemplate}"
+                                Height="{Binding Path=RowState.(local:ResizableDataRow.RowHeight)}" />
+            </Grid>
+        </dx:MeasurePixelSnapper>
+        <local:ResizableDataRow>
+            <local:ResizableDataRow.Template>
+                <ControlTemplate>
+                    <dxg:RowSplitter Name="PART_Resizer"
+                                     Grid.Row="1"
+                                     Cursor="SizeNS"
+                                     Height="1" />
+                </ControlTemplate>
+            </local:ResizableDataRow.Template>
+        </local:ResizableDataRow>
+    </StackPanel>
+</DataTemplate>
 ```
 
 ## Files to Review
