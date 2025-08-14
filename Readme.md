@@ -32,7 +32,7 @@ public class ResizableDataRow : Control, IResizeHelperOwner {
 
 ### Persist Row Height with an Attached Property
 
-The `RowHeight` attached property stores the height value in the `RowState` object. The grid uses this value to restore the row height after scrolling or refreshing. The `ResizableDataRow` control gets and sets the row height through the `RowState`:
+The `RowHeight` attached property stores the height value in the `RowState` property. The grid uses this value to restore the row height after scrolling or refreshing. The `ResizableDataRow` control gets and sets the row height through the `RowState` property:
 
 ```csharp
 public static void SetRowHeight(DependencyObject element, double value) {
@@ -46,7 +46,7 @@ public static double GetRowHeight(DependencyObject element) {
 
 ### Define a Row Template
 
-The [`DataRowTemplate`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TableView.DataRowTemplate) contains a `ContentControl` that displays the default row content and a `ResizableDataRow` control with a `RowSplitter` to change the row height:
+The template assigned to the [`DataRowTemplate`](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.TableView.DataRowTemplate) property defines a `ContentControl` that displays the default row content and a `ResizableDataRow` control with a `RowSplitter` to change the row height:
 
 ```xaml
 <DataTemplate x:Key="PersistentRowStateDataRowTemplate">
