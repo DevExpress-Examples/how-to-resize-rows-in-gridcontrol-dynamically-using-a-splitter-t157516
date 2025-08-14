@@ -7,7 +7,7 @@
 
 # WPF Data Grid – Resize Row Height
 
-This example implements resizable rows in a DevExpress WPF [Grid](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl). Users can interactively change the height of individual grid rows (similar to resizing columns) and retain these changes for a consistent user experience.
+This example implements resizable rows in a DevExpress WPF [Grid](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl). Users can interactively change the height of individual grid rows (similar to the way columns are resized) and retain these changes for a consistent user experience.
 
 ![Resize Row Height with a Splitter](./Images/resize-row-height.gif)
 
