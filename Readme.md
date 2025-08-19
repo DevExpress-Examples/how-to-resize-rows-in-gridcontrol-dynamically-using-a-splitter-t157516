@@ -15,7 +15,7 @@ This example implements resizable rows in a DevExpress WPF [Grid](https://docs.d
 
 ### Create a Resizable Control
 
-The `ResizableDataRow` control implements the `IResizeHelperOwner` interface to work with `ResizeHelper`. The control stores the current row height in the `RowHeight` property and updates this value when the splitter moves.
+The `ResizableDataRow` control implements the `IResizeHelperOwner` interface to work with the `ResizeHelper` class, which handles mouse-based row resizing. The control stores the current row height in the `RowHeight` property and updates this value when a user moves the splitter.
 
 ```csharp
 public class ResizableDataRow : Control, IResizeHelperOwner {
